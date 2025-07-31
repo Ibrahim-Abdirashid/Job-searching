@@ -60,5 +60,5 @@ form.addEventListener("submit", (e) => {
 
   // marka signup lasiiyo waa inuu page-ka kale aadaa
 
-  window.location.href = "/html/login.html";
+  window.location.href = "login.html";
 });
