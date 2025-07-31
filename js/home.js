@@ -1,21 +1,40 @@
-document.querySelector("#search-form").addEventListener("submit", (e) => {
-  e.preventDefault();
+let jobs = [];
+
+async function loadJobs() {
+  const response = await fetch("./jobs.json");
+  jobs = await response.json();
+  localStorage.setItme("jobs", json.stringify(jobs));
+
+}
+
+function searchJobs() {
+  const query = document.getElementById("searchBox").value.toLowerCase();
+  const savedJobs = JSON.parse(localStorage.getItem("jobs"))|| [];
+  const results = savedJobs.filter((job) => job.title.toLowerCase().includes(query));
 
 
-  const query = document.querySelector("#searchInput").value;
-  console.log(query);
+  displayResults(results);
   
-    // url-kani wuxuu inoo heynayaa userka waxa uu input search soo galiyo inuu raadiyo
-  const url = `https://indeed12.p.rapidapi.com/jobs/search?query=${query}&location=chicago&page_id=1&locality=us&fromage=1&radius=50&sort=date&job_type=permanent`;
+}
 
-    //(options-kanina) wuxuu faah faahin u yahay (url-ka) ama hubin u yahay
-  const options = {
-	method: 'GET',
-	headers: {
-		'x-rapidapi-key': 'f5a1db72b2msh7bba6a56a4001e8p1d8ee6jsn7da82f55214a',
-		'x-rapidapi-host': 'indeed12.p.rapidapi.com'
-	}
-  };
-  
+function displayResults(results){
+  const container = document.getElementById('results');
+  container.innerHTML = '';
+  if(results.length === 0){
+    container.innerHTML = '<p>No jobs found.</p>';
+    return;
+  }
+  results.forEach(job => {
+    const div = document.createElement('div');
+    div.className = 'job-card';
+    div.innerHTML = `
+      <div class="job-title">${job.title}</div>
+      <div class="job-info">${job.company} - ${job.location}</div>
+      <div class="job-info">Type: ${job.type}</div>
+      <div class="job-info">Salary: ${job.salary}</div>
+    `;
+    container.appendChild(div);
+  });
 
-});
+  }
+
