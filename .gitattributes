@@ -1,8 +1,0 @@
-# Force JSON files to use LF line endings
-*.json text eol=lf
-
-# Mark PNG files as binary
-*.png binary
-
-# Set merge strategy for Markdown files
-*.md merge=union

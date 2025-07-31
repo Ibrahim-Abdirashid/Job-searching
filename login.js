@@ -27,5 +27,5 @@ loginForm.addEventListener("submit", function(e){
     }
 
     // after login xagee la aadayaa
-    window.location.href  = "/html/home.html"
+    window.location.href  = "home.html"
 })
