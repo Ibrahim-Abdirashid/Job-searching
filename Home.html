@@ -86,6 +86,36 @@
     font-weight: bold;
     margin-top: 100px;
   }
+  header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  button{
+    background-color: #f1f1f1;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+  }
+  #logout:hover{
+    background-color: antiquewhite;
+    cursor: pointer;
+  }
+  #dark-btn:hover{
+    background-color: bisque;
+  }
+  /* Dark mode */
+body.dark-mode {
+    background-color: #121212;
+    /* color: white; */
+}
+
+body.dark-mode button {
+    background-color: #333;
+    color: white;
+}
   @media (max-width: 700px) {
     div{
       grid-template-columns: repeat(2, 1fr);
@@ -102,6 +132,11 @@
 
 </head>
 <body>
+  <header>
+    <button id="logout">Logout</button>
+      <button id="modeButton">Switch to Dark Mode</button>
+
+  </header>
   <div class="hero-title">
     <h1 class="">Take The Next Step <br>in Your Caree</h1>
   </div>

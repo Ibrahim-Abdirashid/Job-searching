@@ -35,3 +35,40 @@ function displayResults(results) {
     container.appendChild(div);
   });
 }
+document.getElementById("logout").addEventListener("click", () => {
+  localStorage.removeItem("currentUser");
+
+  window.location.href = "login.html";
+});
+
+//* waxaan soo select gareyn buttonka iyo bodyga
+// script.js
+
+// Hel button-ka iyo body-ga
+const modeButton = document.getElementById("modeButton");
+const body = document.body;
+
+// Hubi haddii mode-ka hore u kaydsanaa
+if (localStorage.getItem("mode") === "dark") {
+  body.classList.add("dark-mode");
+  modeButton.textContent = "Switch to Light Mode";
+} else {
+  body.classList.remove("dark-mode");
+  modeButton.textContent = "Switch to Dark Mode";
+}
+
+// Marka button-ka la riixo, beddel dark mode iyo light mode
+modeButton.addEventListener("click", function () {
+  if (body.classList.contains("dark-mode")) {
+    // U beddel light mode
+    body.classList.remove("dark-mode");
+    modeButton.textContent = "Switch to Dark Mode";
+   body.style.color= "white"
+    localStorage.setItem("mode", "light"); // Kaydi xaaladda light mode
+  } else {
+    // U beddel dark mode
+    body.classList.add("dark-mode");
+    modeButton.textContent = "Switch to Light Mode";
+    localStorage.setItem("mode", "dark"); // Kaydi xaaladda dark mode
+  }
+});
