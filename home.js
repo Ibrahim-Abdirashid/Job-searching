@@ -1,9 +1,10 @@
 let jobs = [];
 
 async function loadJobs() {
-  const response = await fetch("/jobs.json");
+  const response = await fetch("C:\Users\hp\Desktop\Job_hunting\jobs.json");
   jobs = await response.json();
   localStorage.setItme("jobs", json.stringify(jobs));
+  
 }
 
 function searchJobs() {
