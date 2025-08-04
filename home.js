@@ -1,7 +1,7 @@
 let jobs = [];
 
 async function loadJobs() {
-  const response = await fetch("./jobs.json");
+  const response = await fetch("/jobs.json");
   jobs = await response.json();
   localStorage.setItme("jobs", json.stringify(jobs));
 }
@@ -63,7 +63,7 @@ modeButton.addEventListener("click", function () {
     // U beddel light mode
     body.classList.remove("dark-mode");
     modeButton.textContent = "Switch to Dark Mode";
-   body.style.color= "white"
+    body.style.color = "white";
     localStorage.setItem("mode", "light"); // Kaydi xaaladda light mode
   } else {
     // U beddel dark mode
