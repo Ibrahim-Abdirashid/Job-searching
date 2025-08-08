@@ -1,9 +1,9 @@
 let jobs = [];
 
 async function loadJobs() {
-  const response = await fetch("./jobs.json");
+  const response = await fetch("/jobs.json");
   jobs = await response.json();
-  localStorage.setItme("jobs", json.stringify(jobs));
+  localStorage.setItme("jobs", JSON.stringify(jobs));
 }
 
 function searchJobs() {
