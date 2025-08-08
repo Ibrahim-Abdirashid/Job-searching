@@ -8,7 +8,14 @@
     body{
       background-color:rgb(141, 63, 141) ;
       /* color: white; */
+      position: relative;
     }
+     #results{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-left: 5rem;
+    }
+   
     .form{
       max-width: 1200px;
       margin-inline: auto;
@@ -61,16 +68,7 @@
   .job-info {
     color: #555;
   }
-  footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  left: 0;
-  background-color: #333;
-  color: white;
-  text-align: center;
-  padding: 5px;
-}
+
   .hero-title{
     display: flex;
     justify-content: center;
@@ -91,6 +89,7 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    margin-top: 2rem;
   }
   button{
     background-color: #f1f1f1;
@@ -127,6 +126,14 @@ body.dark-mode button {
 
       grid-template-columns: repeat(1, 1fr) 
     }
+     #results{
+      display: flex;
+      margin-left: 0;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+   
   }
 </style>
 
@@ -147,8 +154,6 @@ body.dark-mode button {
 
 <div id="results"></div>
 
-  <footer>
-    <p>Copyright © 2023 JobHunt. All rights reserved.</p>
   </footer>
   <script src="home.js"></script>
 </body>
