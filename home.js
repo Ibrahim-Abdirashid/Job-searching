@@ -1,7 +1,7 @@
 let jobs = [];
 
 async function loadJobs() {
-  const response = await fetch("Job_hunting/jobs.json");
+  const response = await fetch("jobs.json");
   jobs = await response.json();
   localStorage.setItme("jobs", json.stringify(jobs));
 }
@@ -57,7 +57,7 @@ if (localStorage.getItem("mode") === "dark") {
   modeButton.textContent = "Switch to Dark Mode";
 }
 
-// Marka button-ka la riixo, beddel dark mode iyo light mode
+// Marka button-ka click la siiyo, beddel dark mode iyo light mode
 modeButton.addEventListener("click", function () {
   if (body.classList.contains("dark-mode")) {
     // U beddel light mode
