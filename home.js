@@ -1,21 +1,28 @@
 let jobs = [];
 
+// Function to load jobs from the JSON file
 async function loadJobs() {
-  const response = await fetch("jobs.json");
+  const response = await fetch("/jobs.json");
   jobs = await response.json();
-  localStorage.setItme("jobs", JSON.stringify(jobs));
+  localStorage.setItem("jobs", JSON.stringify(jobs)); // Fixed typo here
 }
 
+// Function to search jobs based on query
 function searchJobs() {
   const query = document.getElementById("searchBox").value.toLowerCase();
   const savedJobs = JSON.parse(localStorage.getItem("jobs")) || [];
   const results = savedJobs.filter((job) =>
-    job.title.toLowerCase().includes(query)
+    job.title.toLowerCase().includes(query) ||
+    job.company.toLowerCase().includes(query) ||
+    job.location.toLowerCase().includes(query) ||
+    job.type.toLowerCase().includes(query) ||
+    job.salary.toLowerCase().includes(query)
   );
 
   displayResults(results);
 }
 
+// Function to display the search results
 function displayResults(results) {
   const container = document.getElementById("results");
   container.innerHTML = "";
@@ -35,20 +42,23 @@ function displayResults(results) {
     container.appendChild(div);
   });
 }
+
+// Log out functionality
 document.getElementById("logout").addEventListener("click", () => {
   localStorage.removeItem("currentUser");
-
   window.location.href = "login.html";
 });
 
-//* waxaan soo select gareyn buttonka iyo bodyga
-// script.js
+// Load jobs when the page loads
+window.onload = function() {
+  loadJobs(); 
+};
 
-// Hel button-ka iyo body-ga
+// Dark Mode Functionality
 const modeButton = document.getElementById("modeButton");
 const body = document.body;
 
-// Hubi haddii mode-ka hore u kaydsanaa
+// Check if the mode was previously saved
 if (localStorage.getItem("mode") === "dark") {
   body.classList.add("dark-mode");
   modeButton.textContent = "Switch to Light Mode";
@@ -57,18 +67,17 @@ if (localStorage.getItem("mode") === "dark") {
   modeButton.textContent = "Switch to Dark Mode";
 }
 
-// Marka button-ka click la siiyo, beddel dark mode iyo light mode
+// Toggle between dark mode and light mode when the button is clicked
 modeButton.addEventListener("click", function () {
   if (body.classList.contains("dark-mode")) {
-    // U beddel light mode
+    // Switch to light mode
     body.classList.remove("dark-mode");
     modeButton.textContent = "Switch to Dark Mode";
-    body.style.color = "white";
-    localStorage.setItem("mode", "light"); // Kaydi xaaladda light mode
+    localStorage.setItem("mode", "light"); // Save light mode state
   } else {
-    // U beddel dark mode
+    // Switch to dark mode
     body.classList.add("dark-mode");
     modeButton.textContent = "Switch to Light Mode";
-    localStorage.setItem("mode", "dark"); // Kaydi xaaladda dark mode
+    localStorage.setItem("mode", "dark"); // Save dark mode state
   }
 });
